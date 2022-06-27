@@ -13,10 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from django.contrib import admin
 from django.urls import path, include
-from myapp import views
 
 # http://127.0.0.1/
 # http://127.0.0.1/app/
@@ -25,7 +23,34 @@ from myapp import views
 # http://127.0.0.1/read/1
 
 urlpatterns = [
-    path('',views.index),#아무거나로 들어올때
-    path('create/',views.create),#create로 들어올때
-    path('read/<id>/',views.read)
-] #<> -->이거는 언제든지 값이 바뀔수있다== 상수라는뜻
+    path('admin/', admin.site.urls),
+    path('',include('myapp.urls')),
+    path('app',include('myapp.urls'))#app이라는 경로에서 들어오면 myapp.urls로 위임
+]  # 사용자가 admin이 아닌 다른 곳에서 접속을 하면 myapp.urls로 위임한다
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
